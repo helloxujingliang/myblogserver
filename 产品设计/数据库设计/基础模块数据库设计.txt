@@ -1,0 +1,16 @@
+用户表：myblog_user
+  id
+  email
+  password
+  username
+  image
+  work
+  introduce
+  createtime
+  ip
+  birthday
+  wechat
+  weibo
+  github
+  state
+  delete
