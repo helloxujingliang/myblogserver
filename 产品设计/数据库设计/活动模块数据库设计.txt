@@ -1,7 +1,8 @@
 create table if not exists activity(
    id  varchar(36) not null comment '活动表主键ID',
    name varchar(250) not null comment '活动名称',
-  time datetime date not null comment '活动时间',
+   time datetime date not null comment '活动时间',
+   city varchar(32) not null comment '举办地点',
    create_time datetime null comment '创建时间',
    update_time datetime null comment '更新时间',
 )
