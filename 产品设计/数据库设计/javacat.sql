@@ -234,3 +234,37 @@ use javacat;
     -- )
 
 -- 模块角色关联表
+
+
+-- 用户信息
+-- select id,username,email from user limit 1,20;
+
+-- 文章查询
+-- select id,title,description from article;
+
+-- 专栏表
+-- select id,name from category;
+
+
+
+-- 标签表
+-- insert into tag values ("a76c7cfd-3c9d-e42f-c86d-192cf9d5b5ae","WebGIS","Web GIS是Internet技术应用于GIS开发的产物，是现代GIS技术的重要组成部分。常见的Web GIS开发软件有超擎图形。",null,"2023-01-06 14:13:20",null,1,0);
+-- insert into tag values ("ff81568f-0e40-ca5f-03f4-ca6416fe07f5","SQL","结构化查询语言（Structured Query Language）简称SQL，是一种特殊目的的编程语言，是一种数据库查询和程序设计语言，用于存取数据以及查询、更新和管理关系数据库系统。",null,"2023-01-06 14:17:47",null,1,0);
+-- insert into tag values ("38c8a243-c42b-e528-e66e-20f80959ae36","GeoJson","GeoJSON是一种对各种地理数据结构进行编码的格式，基于Javascript对象表示法(JavaScript Object Notation, 简称JSON)的地理空间信息数据交换格式。",null,"2023-01-06 14:13:20",null,1,0,0);
+-- insert into tag values ("d4a5018c-b943-cda7-815e-b2fe45ef787c","JSON","JSON（JavaScript Object Notation, JS对象简谱）是一种轻量级的数据交换格式。",null,"2023-01-06 14:13:20",null,1,0,0);
+-- insert into tag values ("db98f41f-d0a1-12db-eb4e-e84c9894f944","Axios","Axios，是一个基于promise [5]  的网络请求库，作用于node.js和浏览器中，它是 isomorphic 的(即同一套代码可以运行在浏览器和node.js中)。",null,"2023-01-06 14:35:01",null,1,0,0);
+
+-- 给tag表添加推荐字段
+
+-- alter table tag add recommend tinyint(1) default 0 comment '是否推荐：0：不推荐（默认）；1：推荐；'
+
+-- show create table tag;
+
+-- select id,name,left(description,60) from tag;
+
+-- 添加标签文章关联
+-- insert into article_tag_relation values ("3b0deb97-9ade-b0bf-f5b9-a4525829effe","bf30b589-7004-585a-3777-b5fc73c2d73d","a76c7cfd-3c9d-e42f-c86d-192cf9d5b5ae","2023-01-06 14:41:37",null,0)
+
+-- 标签文章关联
+-- select * from article_tag_relation;
+
