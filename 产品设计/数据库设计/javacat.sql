@@ -292,10 +292,26 @@ use javacat;
 
 
 -- 首页文章列表
-select user.id as userid,user.username as username,user.avatar as avatar,user.work as work,(select count(1) from user_follow_relation where user_id = user.id) as fansCount,article.title,article.id,article.createtime,category.name,(select count(1) from article_like_relation where article_id = article.id and user_id = "394d7e5a-1c33-bea4-ddc8-bf8a8d7d9ce6") as islike,(select count(1) from article_collect_relation where article_id = article.id and user_id = "394d7e5a-1c33-bea4-ddc8-bf8a8d7d9ce6") as iscollect,(select count(1) from article_like_relation where article_id = article.id) as likecount,(select count(1) from article_collect_relation where article_id = article.id) as collectcount from article,user,category where user.id = article.create_user_id and category.id = article.cate_id ;
+-- select user.id as userid,user.username as username,user.avatar as avatar,user.work as work,(select count(1) from user_follow_relation where user_id = user.id) as fansCount,article.title,article.id,article.createtime,category.name,(select count(1) from article_like_relation where article_id = article.id and user_id = "394d7e5a-1c33-bea4-ddc8-bf8a8d7d9ce6") as islike,(select count(1) from article_collect_relation where article_id = article.id and user_id = "394d7e5a-1c33-bea4-ddc8-bf8a8d7d9ce6") as iscollect,(select count(1) from article_like_relation where article_id = article.id) as likecount,(select count(1) from article_collect_relation where article_id = article.id) as collectcount from article,user,category where user.id = article.create_user_id and category.id = article.cate_id ;
 
 -- select article.title,article_tag_relation.tag_id from article right outer join article_tag_relation on ;
 -- select tag_id from article_tag_relation where article_id = "bf30b589-7004-585a-3777-b5fc73c2d73d"
 -- select * from article left join (select tag.id as tagId ,tag.name as tagName from tag where id in (select tag_id from article_tag_relation where article_id = "bf30b589-7004-585a-3777-b5fc73c2d73d")) on 1 = 1;
 -- 左关联实现文章 标签查询
 -- select article.title,article_tag_relation.tag_id,tag.name from article left join article_tag_relation on article.id = article_tag_relation.article_id left join tag on tag.id = article_tag_relation.tag_id;
+
+
+
+-- -- -- -- -- -- -- --
+-- -- -- 链 接 -- -- --
+-- -- -- -- -- -- -- --
+
+-- insert into link values("4bb292ab-7499-d163-6e69-0fbaf970c6e5","C语言中文网","http://c.biancheng.net/","C语言中文网是中国领先的C语言程序设计专业网站，提供C语言入门经典教程、C语言编译器、C语言函数手册，C语言编程技巧，C语言考试试题等，是学习、自学C语言程序设计的好帮手。","2023-01-07 10:38:21",null,0,1,0);
+-- insert into link values("4d18b369-4068-889f-9be1-f1d0c6eb436e","BEJSON","https://www.bejson.com/","在线,JSON,JSON 校验,格式化,xml转json 工具,在线工具,json视图,可视化,程序,服务器,域名注册,正则表达式,测试,在线json格式化工具,json 格式化,json格式化工具,json字符串格式化,json 在线查看器,json在线,json 在线验证,json tools online,在线文字对比工具,json解析","2023-01-07 10:41:03",null,0,1,0);
+-- insert into link values("63f893ff-2391-b095-de80-e1181988c4cc","DiceBear Avatars","https://avatars.dicebear.com/","DiceBear是设计师和开发人员的化身库。您可以在简单的身份图标和可爱的设计角色之间进行选择。","2023-01-07 10:41:03",null,0,1,0,null,null);
+-- alter table link add avatar varchar(250) default null comment '链接封面图片';
+-- alter table link add click int(11) default 0 comment '链接的点击量';
+select name,url,left(description,50),avatar,click from link;
+-- show create table link;
+
+

@@ -2,7 +2,7 @@
 
     系统基础模块：用户表、用户操作日志表、文章和动态评论表、文章和动态评论回复表
 
-    技术文章模块：技术专栏表、专栏关注表、技术标签表、技术文章表、文章标签关联表、文章点赞表、文章收藏表、文章举报表、
+    技术文章模块：技术专栏表、专栏关注表、技术标签表、技术文章表、文章标签关联表、文章点赞表、文章收藏表、文章举报表、链接表
 
     社区动态模块：圈子表、圈子关注表、话题表、动态表、动态图片表、动态话题关联表、动态点赞表、动态举报表、
 
@@ -15,5 +15,71 @@
     后台管理模块：角色表、角色用户关联表、模块表、模块角色关联表、部门表、部门用户关联表、字典表、网站配置表、
 
 
-二、数据表详细设计
+二、创建数据库、选择字符集、选择排序规则
 
+    
+三、创建数据表、设置数据表结构
+
+    数据表名称命名规则：
+
+四、系统基础模块
+
+
+五、技术文章模块
+
+
+六、社区动态模块
+
+
+七、课程学习模块
+
+    (1) 课程信息表
+
+    (2) 用户收藏课程表
+
+八、活动中心模块
+
+    (1) 活动信息表
+        create table if not exists activity(
+            id varchar(36) not null comment '主键ID',
+            title varchar(100) not null comment '活动标题',
+            url varchar(250) not null comment '活动报名或活动主页地址',
+            time datetime not null comment '举办时间',
+            avatar varchar(250) not null comment '封面图片',
+            phone varchar(11) not null comment '预留电话',
+            wechat varchar(32) not null comment '预留微信',
+            examine tinyint(1) default 0 comment '审核 0：未审核（默认）；1：通过；2：未通过；',
+            state tinyint(1) default 1 comment '状态 0：禁用；1：启用；默认：1；',
+            is_delete tinyint(1) default 0 comment '假删除 0：未删除；1：删除；默认：0；',
+            primary key (id)
+        ) comment '活动信息表'
+
+    (2) 城市表
+
+        create table if not exists city(
+            id varchar(36) not null comment '主键ID',
+            parent_id varchar(36) default '0' comment '上级机构ID；默认：0',
+            name varchar(32) not null comment '城市名称',
+            sort int(11) default 0 comment '城市排序',
+            createtime datetime null comment '创建时间',
+            updatetime datetime null comment '更新时间',
+            state tinyint(1) default 1 comment '状态 0：禁用；1：启用；默认：1；',
+            is_delete tinyint(1) default 0 comment '假删除 0：未删除；1：删除；默认：0；',
+            primary key (id)
+        ) comment '活动城市表'
+
+    (3) 活动城市关联表
+
+        create table if not exists activity_city_relation(
+            id varchar(36) not null comment '主键ID',
+            activity_id varchar(36) not null comment '活动ID',
+            city_id varchar(36) not null comment '举办城市ID',
+            createtime datetime null comment '创建时间',
+            updatetime datetime null comment '更新时间',
+            state tinyint(1) default 1 comment '状态 0：禁用；1：启用；默认：1；',
+            is_delete tinyint(1) default 0 comment '假删除 0：未删除；1：删除；默认：0；',
+        )
+
+九、积分等级模块
+
+十、后台管理模块
