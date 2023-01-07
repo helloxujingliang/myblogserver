@@ -38,10 +38,21 @@
         create table if not exists course(
             id varchar(36) not null comment '主键ID',
             title varchar(100) not null comment '课程标题',
-
-        )
+            description varchar(250) default null comment '课程描述',
+            tag varchar(36) default null comment '课程标签',
+            avatar varchar(250) not null comment '课程封面',
+            click int(11) default 0 comment '学习次数',
+            createtime datetime null comment '创建时间',
+            updatetime datetime null comment '更新时间',
+            state tinyint(1) default 1 comment '状态 0：禁用；1：启用；默认：1；',
+            is_delete tinyint(1) default 0 comment '假删除 0：未删除；1：删除；默认：0；',
+            primary key (id)
+        ) comment '课程信息表'
 
     (2) 用户收藏课程表
+
+        create 
+
 
 八、活动中心模块(3)
 
@@ -55,6 +66,8 @@
             phone varchar(11) not null comment '预留电话',
             wechat varchar(32) not null comment '预留微信',
             examine tinyint(1) default 0 comment '审核 0：未审核（默认）；1：通过；2：未通过；',
+            createtime datetime null comment '创建时间',
+            updatetime datetime null comment '更新时间',
             state tinyint(1) default 1 comment '状态 0：禁用；1：启用；默认：1；',
             is_delete tinyint(1) default 0 comment '假删除 0：未删除；1：删除；默认：0；',
             primary key (id)
