@@ -8,7 +8,7 @@
 
     课程学习模块：课程信息表、课程收藏表、
 
-    活动中心模块：活动信息表、城市信息表、
+    活动中心模块：活动信息表、城市信息表、活动和城市关联表
 
     积分等级模块：积分分类表(规定不同操作获取积分的分值)、积分明细表(记录用户获取积分的详细记录)、积分等级制定表(规定积分与等级的对应关系)
 
@@ -35,9 +35,15 @@
 
     (1) 课程信息表
 
+        create table if not exists course(
+            id varchar(36) not null comment '主键ID',
+            title varchar(100) not null comment '课程标题',
+
+        )
+
     (2) 用户收藏课程表
 
-八、活动中心模块
+八、活动中心模块(3)
 
     (1) 活动信息表
         create table if not exists activity(
