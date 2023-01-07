@@ -186,15 +186,6 @@ use javacat;
 -- select id,title from article;
 
 
--- 用户点赞文章
-
--- -- 詹姆斯高斯赵 点赞 Vue3使用mapboxgl 文章
--- insert into article_like_relation values("e5c22fbd-2a86-9d91-28a7-a882c2447905","bf30b589-7004-585a-3777-b5fc73c2d73d","613d851e-d409-4b8e-bd49-47d1fcb368e5","2023-01-05 13:39:23",null,0);
--- 程序员范某 点赞 Vue3使用mapboxgl 文章
--- insert into article_like_relation values("54d0dd29-fc00-0cb2-4c97-86c86ed9063f","bf30b589-7004-585a-3777-b5fc73c2d73d","394d7e5a-1c33-bea4-ddc8-bf8a8d7d9ce6","2023-01-05 13:42:23",null,0);
-
--- 首页文章列表
--- select user.id as userid,user.username as username,user.avatar as avatar,user.work as work,(select count(1) from user_follow_relation where user_id = user.id) as fansCount,article.title,article.id,article.createtime,category.name,(select count(1) from article_like_relation where article_id = article.id and user_id = "394d7e5a-1c33-bea4-ddc8-bf8a8d7d9ce6") as islike,(select count(1) from article_like_relation where article_id = article.id) as likecount from article,user,category where user.id = article.create_user_id and category.id = article.cate_id;
 
 
 -- 角色表
@@ -245,7 +236,9 @@ use javacat;
 -- 专栏表
 -- select id,name from category;
 
-
+-- -- -- -- -- -- -- --
+-- -- 文章关联标签 -- --
+-- -- -- -- -- -- -- --
 
 -- 标签表
 -- insert into tag values ("a76c7cfd-3c9d-e42f-c86d-192cf9d5b5ae","WebGIS","Web GIS是Internet技术应用于GIS开发的产物，是现代GIS技术的重要组成部分。常见的Web GIS开发软件有超擎图形。",null,"2023-01-06 14:13:20",null,1,0);
@@ -264,7 +257,45 @@ use javacat;
 
 -- 添加标签文章关联
 -- insert into article_tag_relation values ("3b0deb97-9ade-b0bf-f5b9-a4525829effe","bf30b589-7004-585a-3777-b5fc73c2d73d","a76c7cfd-3c9d-e42f-c86d-192cf9d5b5ae","2023-01-06 14:41:37",null,0)
-
+-- insert into article_tag_relation values ("c8f45289-d932-dc8b-8ac4-a0f2e6748a1d","bf30b589-7004-585a-3777-b5fc73c2d73d","38c8a243-c42b-e528-e66e-20f80959ae36","2023-01-06 15:59:10",null,0)
 -- 标签文章关联
 -- select * from article_tag_relation;
 
+
+-- -- -- -- -- -- -- --
+-- -- 用户点赞文章 -- --
+-- -- -- -- -- -- -- --
+
+-- -- 詹姆斯高斯赵 点赞 Vue3使用mapboxgl 文章
+-- insert into article_like_relation values("e5c22fbd-2a86-9d91-28a7-a882c2447905","bf30b589-7004-585a-3777-b5fc73c2d73d","613d851e-d409-4b8e-bd49-47d1fcb368e5","2023-01-05 13:39:23",null,0);
+-- 程序员范某 点赞 Vue3使用mapboxgl 文章
+-- insert into article_like_relation values("54d0dd29-fc00-0cb2-4c97-86c86ed9063f","bf30b589-7004-585a-3777-b5fc73c2d73d","394d7e5a-1c33-bea4-ddc8-bf8a8d7d9ce6","2023-01-05 13:42:23",null,0);
+
+
+-- -- -- -- -- -- -- --
+-- -- 用户收藏文章 -- --
+-- -- -- -- -- -- -- --
+
+-- select user.id,user.username,article.id as articleId,article.title from user left join article on 1;
+
+-- insert into article_collect_relation values ("184e2de8-64df-c9a5-b8ff-2becbb28b305","bf30b589-7004-585a-3777-b5fc73c2d73d","cbd6b945-ce98-d813-2863-97f67d2b5b6d","2023-01-06 14:56:09",null,0);
+-- insert into article_collect_relation values ("ca7b5064-3177-4681-cdcc-c1de2e80b230","bf30b589-7004-585a-3777-b5fc73c2d73d","e7143382-d0f7-3d6a-615e-00dfe3ba5fa7","2023-01-06 14:56:09",null,0);
+
+-- insert into article_collect_relation values ("56e7c357-c65e-5fec-57e6-12f2f14dc686","bf30b589-7004-585a-3777-b5fc73c2d73d","394d7e5a-1c33-bea4-ddc8-bf8a8d7d9ce6","2023-01-06 15:01:09",null,0);
+
+-- (select u.id as userid,u.username as username from user as u) union (select a.id as articleId,a.title as articleTitle from article as a);
+
+
+-- -- -- -- -- -- -- --
+-- -- -- 评 论 -- -- --
+-- -- -- -- -- -- -- --
+
+
+-- 首页文章列表
+select user.id as userid,user.username as username,user.avatar as avatar,user.work as work,(select count(1) from user_follow_relation where user_id = user.id) as fansCount,article.title,article.id,article.createtime,category.name,(select count(1) from article_like_relation where article_id = article.id and user_id = "394d7e5a-1c33-bea4-ddc8-bf8a8d7d9ce6") as islike,(select count(1) from article_collect_relation where article_id = article.id and user_id = "394d7e5a-1c33-bea4-ddc8-bf8a8d7d9ce6") as iscollect,(select count(1) from article_like_relation where article_id = article.id) as likecount,(select count(1) from article_collect_relation where article_id = article.id) as collectcount from article,user,category where user.id = article.create_user_id and category.id = article.cate_id ;
+
+-- select article.title,article_tag_relation.tag_id from article right outer join article_tag_relation on ;
+-- select tag_id from article_tag_relation where article_id = "bf30b589-7004-585a-3777-b5fc73c2d73d"
+-- select * from article left join (select tag.id as tagId ,tag.name as tagName from tag where id in (select tag_id from article_tag_relation where article_id = "bf30b589-7004-585a-3777-b5fc73c2d73d")) on 1 = 1;
+-- 左关联实现文章 标签查询
+-- select article.title,article_tag_relation.tag_id,tag.name from article left join article_tag_relation on article.id = article_tag_relation.article_id left join tag on tag.id = article_tag_relation.tag_id;
